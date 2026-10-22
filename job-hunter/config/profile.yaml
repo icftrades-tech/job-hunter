@@ -1,0 +1,79 @@
+# Perfil y pesos. Edita aqui, no el codigo.
+search:
+  titles_include: [analyst, analista, analytics, "business intelligence", "bi developer", reporting]
+  titles_exclude: [intern, internship, becario, practicas, prácticas, director, "head of", vp, chief, "data engineer", "data scientist"]
+
+skills:                      # nombre: {peso, alias}
+  sql:      {weight: 4, aliases: [sql, mysql, postgresql, postgres, t-sql, bigquery, snowflake]}
+  excel:    {weight: 2, aliases: [excel, "hojas de cálculo", spreadsheets]}
+  power bi: {weight: 1, aliases: ["power bi", powerbi]}
+  tableau:  {weight: 1, aliases: [tableau, looker, qlik]}
+  python:   {weight: 1, aliases: [python, pandas]}
+skills_target_weight: 5      # SQL + Excel + 1 extra = 100%
+
+# OJO: repo publico -> este archivo es visible para cualquiera. No pongas datos personales aqui.
+salary:
+  min_annual_eur: 30000      # BRUTO anual. 2.000 EUR netos/mes (12 pagas) en Espana ~ 30-31k brutos. Aproximado; ajusta.
+  fx: {EUR: 1.0, USD: 0.92, GBP: 1.17}
+
+location:
+  prefer: [ES, IE]           # Madrid / Irlanda
+  accept_us: true            # pediste ver USA tambien
+
+weights:                     # se normalizan solos
+  title: 0.25
+  skills: 0.25
+  location: 0.20
+  seniority: 0.15
+  salary: 0.10
+  language: 0.05
+
+notify:
+  min_score: 45
+  top_n: 10
+dashboard:
+  min_score: 30
+  keep_days: 45
+
+sources:
+  adzuna:
+    enabled: false          # desactivado: pide pago. Cambia a true si consigues claves gratis.
+    pages: 2
+    searches:
+      - {country: es, what: "data analyst", where: Madrid}
+      - {country: es, what: "business analyst", where: Madrid}
+      - {country: es, what: "analista de datos"}
+      - {country: es, what: "business analyst"}
+      - {country: gb, what: "data analyst"}
+      - {country: nl, what: "data analyst"}
+      - {country: de, what: "data analyst"}
+      - {country: fr, what: "data analyst"}
+      - {country: it, what: "data analyst"}
+      - {country: us, what: "data analyst"}
+      - {country: us, what: "business analyst"}
+  infojobs:                 # API oficial; necesita INFOJOBS_CLIENT_ID/SECRET
+    enabled: true
+    pages: 2
+    max_details: 40
+    searches: ["data analyst", "business analyst", "analista de datos", "analista bi"]
+  jooble:                   # agregador (incluye vacantes de Indeed y otros); necesita JOOBLE_API_KEY
+    enabled: true
+    pages: 2
+    searches:
+      - {what: "data analyst", where: Madrid, country: Spain}
+      - {what: "business analyst", where: Madrid, country: Spain}
+      - {what: "analista de datos", where: Madrid, country: Spain}
+      - {what: "data analyst", where: Dublin, country: Ireland}
+      - {what: "business analyst", where: Dublin, country: Ireland}
+      - {what: "data analyst remote", where: Europe, country: Europe}
+  remotive:
+    enabled: true
+    searches: ["data analyst", "business analyst", "analyst"]
+  remoteok:
+    enabled: true
+  arbeitnow:
+    enabled: true
+    pages: 3
+  greenhouse:               # tokens de tableros publicos; si uno da 404 se ignora
+    enabled: true
+    companies: {stripe: Stripe, intercom: Intercom, datadog: Datadog, mongodb: MongoDB, cloudflare: Cloudflare, twilio: Twilio, okta: Okta}
